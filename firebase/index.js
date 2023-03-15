@@ -1,8 +1,9 @@
 var admin = require("firebase-admin");
+require("dotenv").config();
 
-
+const serviceAccount = require(process.env.FIREBASE_SERVICE_ACCOUNT_KEY);
 admin.initializeApp({
-  credential: admin.credential.applicationDefault(),
+  credential: admin.credential.cert(serviceAccount),
   databaseURL: "https://celebs-db-3371a.firebaseio.com",
 });
 
