@@ -5,7 +5,7 @@ const serviceAccount = require(process.env.FIREBASE_SERVICE_ACCOUNT_KEY);
 
 
   admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
+    credential: admin.credential.applicationDefault(),
     databaseURL: "https://celebs-db-3371a.firebaseio.com",
   });
   
