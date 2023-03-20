@@ -2,18 +2,21 @@ var admin = require("firebase-admin");
 require("dotenv").config();
 
 const serviceAccount = require(process.env.FIREBASE_SERVICE_ACCOUNT_KEY);
-console.log(process.env.NODE_ENV);
-if (process.env.NODE_ENV === "production") {
+if(process.env.NODE_ENV === "production"){
   admin.initializeApp({
     credential: admin.credential.applicationDefault(),
-    databaseURL: "https://celebs-db-3371a.firebaseio.com",
-  });
-} else {
+    databaseURL: "https://celebs-db-3371a.firebaseio.com"
+  })
+}else{
+  console.log("if run i am for development")
+
   admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     databaseURL: "https://celebs-db-3371a.firebaseio.com",
   });
 }
+  
+
 
 module.exports = admin;
 
