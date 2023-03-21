@@ -14,12 +14,10 @@ const serviceAccount = {
   'auth_provider_x509_cert_url': process.env.FIREBASE_ADMIN_AUTH_PROVIDER_X509_CERT_URL,
   'client_x509_cert_url': process.env.FIREBASE_ADMIN_CLIENT_X509_CERT_URL,
 }
-console.log(a)
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: "https://celebs-db-3371a.firebaseio.com",
 });
-
 
 module.exports = admin;
