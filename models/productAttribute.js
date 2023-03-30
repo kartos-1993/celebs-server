@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { ObjectId } = mongoose.Schema;
 
 const productAttributes = new mongoose.Schema(
   {
@@ -15,7 +16,11 @@ const productAttributes = new mongoose.Schema(
       lowercase: true,
       index: true, // Reference https://www.mongodb.com/docs/manual/indexes/
     },
-    value:[]
+    parent: {
+      type: ObjectId,
+      ref: "Category",
+      required: true,
+    },
   },
   { timestamps: true }
 );

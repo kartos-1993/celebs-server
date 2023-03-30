@@ -10,9 +10,10 @@ const slugify = require("slugify")
 
 exports.create = async (req, res) => {
   try {
-    const { name } = req.body;
+    const { name, parent } = req.body;
     const productAttributes = await new ProductAttribute({
-      name,      
+      name,
+      parent,      
       slug: slugify(name),
     }).save();
     res.json(productAttributes);
