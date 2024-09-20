@@ -6,7 +6,7 @@ const productSchema = new mongoose.Schema(
     title: {
       type: String,
       trim: true,
-      // required: true,
+      required: true,
       minlength: [5, "Too short"],
       maxlength: [300, "Too long"],
       text: true,
@@ -67,20 +67,7 @@ const productSchema = new mongoose.Schema(
     },
     // rating: [{ star: Number, postedBy: ObjectId, ref: "User" }],
     size: [],
-    // sizeInfo: [
-    //   {
-    //     attr_id: 87,
-    //     attr_name: "Size",
-    //     attr_value_id: 755,
-    //     attr_value_name: "XS",
-    //     attr_value_name_en: "XS",
-    //     "Shoulder ": " 35 cm",
-    //     "Length ": " 51 cm",
-    //     "Sleeve Length ": " 60 cm",
-    //     "Bust ": " 71 cm",
-    //     "Cuff ": " 16 cm",
-    //   },
-    // ],
+   
   },
 
   { timestamps: true }
