@@ -1,5 +1,6 @@
-const express = require("express");
-const mongoose = require("mongoose");
+import express from "express";
+import mongoose, { ConnectOptions } from "mongoose";
+const path = require("path");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -17,12 +18,18 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 // database connection
+interface IMongooseOptions extends ConnectOptions {
+  useNewUrlParser: boolean;
+}
 mongoose
-  .connect(process.env.MONGODB_CONNECTON_URI, {
-    useNewUrlParser: true,
-  })
+  .connect(
+    process.env.MONGODB_CONNECTON_URI as string,
+    {
+      useNewUrlParser: true,
+    } as IMongooseOptions
+  )
   .then(() => console.log("DB Connected"))
-  .catch((err) => console.log(err));
+  .catch((err: Error) => console.log(err));
 
 mongoose.connection.on("error", (err) => {
   console.log(`DB CONNETION ERROR: ${err.message}`);
@@ -38,7 +45,10 @@ app.use(bodyParser.json({ limit: "50mb" }));
 app.use(cors());
 
 // routes middleware
-readdirSync("./routes").map((r) => app.use("/api", require("./routes/" + r)));
+const routesDir = path.join(__dirname, "../routes");
+readdirSync(routesDir).map((r: string) =>
+  app.use("/api", require(path.join(routesDir, r)))
+);
 
 // app.use("/api", authRoutes);
 
