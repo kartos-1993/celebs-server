@@ -21,6 +21,7 @@ dotenv.config();
 interface IMongooseOptions extends ConnectOptions {
   useNewUrlParser: boolean;
 }
+
 mongoose
   .connect(
     process.env.MONGODB_CONNECTON_URI as string,
@@ -45,7 +46,8 @@ app.use(bodyParser.json({ limit: "50mb" }));
 app.use(cors());
 
 // routes middleware
-const routesDir = path.join(__dirname, "../routes");
+
+const routesDir = path.join(__dirname, "../src/routes");
 readdirSync(routesDir).map((r: string) =>
   app.use("/api", require(path.join(routesDir, r)))
 );

@@ -1,7 +1,11 @@
 const express = require("express");
 
 //controller
-const { createOrUpdateUser, currentUser, currentAdmin } = require("../controllers/auth");
+const {
+  createOrUpdateUser,
+  currentUser,
+  currentAdmin,
+} = require("../controllers/auth");
 
 console.log("create: ", createOrUpdateUser, "current user: ", currentUser);
 const router = express.Router();

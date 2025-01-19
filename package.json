@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "build": "tsc",
-    "start": "node build/server.js"
+    "start": "nodemon dist/server.js",
+    "start-client-dev": "npm run dev --prefix ../client-web",
+    "start-dev": "concurrently \"npm start\" \"npm run start-client-dev\""
   },
   "keywords": [],
   "author": "",
@@ -20,13 +22,14 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.3.5",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.16",
     "slugify": "^1.6.5"
   },
   "devDependencies": {
     "@types/express": "^5.0.0",
     "@types/node": "^22.10.7",
+    "concurrently": "^9.1.2",
     "dotenv": "^16.0.3",
+    "nodemon": "^3.1.9",
     "typescript": "^5.7.3"
   }
 }
