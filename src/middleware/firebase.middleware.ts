@@ -26,8 +26,6 @@ export const firebaseAuthMiddleware = async (
       ? req.headers.authorization.split(" ")[1]
       : "";
 
-  console.log(token, 1111111111111111111111111111111111111);
-
   try {
     // Verify the token
     const decodedToken = await firebaseAuth.verifyIdToken(token);
