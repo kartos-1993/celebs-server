@@ -15,10 +15,10 @@ import UserModel from "../database/model/user.model";
 
 export class AuthService {
   public async register(registerData: RegisterDto) {
-    const { email } = registerData;
+    const { email, uid } = registerData;
 
-    const existingUser = await UserModel.exists({
-      email,
+    const existingUser = await UserModel.findOne({
+      $or: [{ email }, { uid }],
     });
 
     if (existingUser) {
@@ -29,6 +29,7 @@ export class AuthService {
     }
     const newUser = await UserModel.create({
       email,
+      uid,
     });
 
     return {
